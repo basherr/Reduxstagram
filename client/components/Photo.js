@@ -13,25 +13,25 @@ const Photo = React.createClass({
                         <img src={post.display_src} alt={post.caption} />
                     </Link>
                 
-                    <CSSTransitionGroup transitionName="likes-heart"
+                    <CSSTransitionGroup transitionName="like"
                         transitionEnterTimeout={500}
                         transitionLeaveTimeout={500}>
-                        <span className="likes-heart">{post.likes}</span>
+                        <span key={post.likes} className="likes-heart">{post.likes}</span>
                     </CSSTransitionGroup>
-                    
-                    <figcaption>
-                        <p>{post.caption}</p>
-                        <div className="control-buttons">
-                            <button className="likes">&hearts; {post.likes}</button>
-                            <Link className="button" to={`/view/${post.code}`}>
-                                <span className="comment-count">
-                                    <span className="speech-bubble"></span>
-                                    {comments[post.code] ? comments[post.code].length : 0}
-                                </span>
-                            </Link>
-                        </div>
-                    </figcaption>
                 </div>
+                    
+                <figcaption>
+                    <p>{post.caption}</p>
+                    <div className="control-buttons">
+                        <button className="likes" onClick={this.props.increment.bind(null, i)}>&hearts; {post.likes}</button>
+                        <Link className="button" to={`/view/${post.code}`}>
+                            <span className="comment-count">
+                                <span className="speech-bubble"></span>
+                                {comments[post.code] ? comments[post.code].length : 0}
+                            </span>
+                        </Link>
+                    </div>
+                </figcaption>
             </figure>
 
         )
